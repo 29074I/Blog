@@ -17,20 +17,22 @@ const Login = () => {
           className="max-h-[11vh] cursor-pointer mx-auto"
           onClick={goHome}
         />
-        <p className="text-gray-400 text-base mt-3">
-          나만의 블로그 만들기 ✒️
-        </p>
+        <p className="text-gray-400 text-base mt-3">나만의 블로그 만들기 ✒️</p>
         <br />
-        <input
-          type="id"
-          className="px-4 py-3 rounded-lg my-2 max-w-md w-full bg-gray-100"
-          placeholder="아이디를 입력해주세요"
-        />
-        <input
-          type="password"
-          className="px-4 py-3 rounded-lg my-2 max-w-md w-full bg-gray-100"
-          placeholder="비밀번호를 입력해주세요"
-        />
+        <div>
+          <input
+            type="id"
+            className="px-4 py-3 max-w-md w-full my-2 bg-gray-100 rounded-md"
+            placeholder="아이디를 입력하세요"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            className="px-4 py-3 max-w-md w-full my-2 bg-gray-100 rounded-md"
+            placeholder="비밀번호를 입력하세요"
+          />
+        </div>
         <button className="py-2.5 text-white bg-black text-lg whitespace-nowrap px-2.5 rounded-lg w-full my-3 max-w-md">
           로그인 하기
         </button>
