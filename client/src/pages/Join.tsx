@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function Join() {
+const Join = () => {
   return (
     <div>Join</div>
   )
 }
+
+export default Join

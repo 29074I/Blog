@@ -9,7 +9,10 @@ module.exports = {
       },
       height: {
         '16' : '4.5rem',
-      }
+      },
+      screens: {
+        'sm' : '450px'
+      },
     },
   },
 };
