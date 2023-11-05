@@ -1,0 +1,26 @@
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:8081/jblog
+        username: jblog
+        password: jblog3569!
+    jpa:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: create
+      properties:
+        hibernate:
+          format_sql: true
+      database: postgresql
+      show_sql: true
+      
+mybatis:
+    mapper-locations: classpath:mybatis/mapper/**/**.xml
+
+server:
+    port: 8089
+    address: 0.0.0.0
+
+logging:
+    level:
+        root: info
