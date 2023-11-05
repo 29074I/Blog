@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sjy.blog.dto.usersdto.UserLoginDto;
+import com.sjy.blog.dto.usersdto.UserProfileDto;
 import com.sjy.blog.dto.usersdto.UsersRegisterDto;
+import com.sjy.blog.model.entity.Users;
 import com.sjy.blog.service.UsersService;
 
 import lombok.RequiredArgsConstructor;
@@ -46,6 +49,12 @@ public class UsersController {
 	public ResponseEntity<Boolean> checkNickname(@PathVariable String nickname){
 		log.info("Starting check nickname : {}", nickname);
 		return ResponseEntity.ok(usersService.checkNickname(nickname));
+	}
+	
+	@PostMapping("/users/login")
+	public ResponseEntity<UserProfileDto> login(@RequestBody UserLoginDto userLoginDto) {
+		log.info("Starting user login for email {}", userLoginDto.getEmail());
+			return ResponseEntity.ok().body(usersService.login(userLoginDto));
 	}
 
 }
