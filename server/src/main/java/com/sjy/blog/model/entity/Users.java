@@ -1,12 +1,15 @@
 package com.sjy.blog.model.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.sjy.blog.converter.PasswordConverter;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +30,8 @@ public class Users extends BaseEntity {
 	@Column(length = 100, unique = true, nullable = false)
 	private String email;
 	
-	@Column(length = 16, nullable = false)
+	@Convert(converter = PasswordConverter.class)
+	@Column(length = 255, nullable = false)
 	private String password;
 	
 	@Column(nullable = false, unique = true)
@@ -37,9 +41,13 @@ public class Users extends BaseEntity {
 	private UserRole role;
 	
 	private String img_url;
+	
+	@Column(nullable = true, columnDefinition = "VARCHAR(255) default 'Y'")
+	private String activeStatus;
 
 	@Builder
-	public Users(Long id, String email, String password, String nickname, UserRole role, String img_url) {
+	public Users(Long id, String email, String password, String nickname, UserRole role, String img_url,
+			String activeStatus) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -47,7 +55,10 @@ public class Users extends BaseEntity {
 		this.nickname = nickname;
 		this.role = role;
 		this.img_url = img_url;
+		this.activeStatus = activeStatus;
 	}
+
+	
 	
 	
 
