@@ -8,8 +8,9 @@ import Login from "./pages/Login"
 import Join from "./pages/Join"
 
 function App() {
+
   const location = useLocation();
-  const hideHeader = location.pathname === '/login' || location.pathname === '/join'
+  const hideHeader = location.pathname === '/login' || location.pathname === '/sign-up'
 
   return (
     <div className="mx-auto my-0">
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="join" element={<Join />} />
+        <Route path="/sign-up" element={<Join />} />
       </Routes>
     </div>
   );
