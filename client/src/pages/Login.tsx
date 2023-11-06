@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/welcomimg.png";
 import axios from "axios";
+import { useDispatch } from "react-redux/es/exports";
+import { setLogin } from "../store/loginSlice";
+import Modal from "../components/Modal/Modal"
 
 const Login = () => {
 
+  const [ isOpenModal, setOpenModal ] = useState(false)
   const [ email, setEmail ] = useState("")
   const [ password, setPassword ] = useState("")
 
   const navigator = useNavigate();
+  const dispatch = useDispatch();
+
+  const onClickToggleModal = useCallback(() => {
+    setOpenModal(!isOpenModal)
+  }, [isOpenModal])
 
   const handleLogin = async () => {
     const requestData = {
@@ -19,9 +28,12 @@ const Login = () => {
             .post(`${process.env.REACT_APP_API_BASE_URL}/users/login`, requestData)
             .then((res) => {
               console.log(res.data)
+              dispatch(setLogin({user: res.data}))
+              navigator('/')
             })
             .catch((err) => {
-              console.log(err.message);
+              console.log(err)
+              setOpenModal(!isOpenModal)
             })
   }
 
@@ -66,6 +78,15 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      {isOpenModal && (
+        <Modal onClickToggleModal={onClickToggleModal}>
+          {/* <h2 className="text-center text-xl font-semibold m-2">이메일 중복 확인</h2> */}
+          <p className="text-center">다시 한번 확인해주세요 😅</p>
+          <button
+            className="mt-4 bg-gray-600 text-white rounded-md text-lg py-1.5"
+            onClick={onClickToggleModal}>확인</button>
+        </Modal>
+      )}
     </div>
   );
 };
